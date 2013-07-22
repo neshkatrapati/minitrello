@@ -64,14 +64,6 @@
 				</ul>
 			</div>
 
-			<div class="span4">
-				<h2>Private</h2>
-				<ul id="privates">
-					{{#each privates}}
-						{{> private}}
-					{{/each}}
-				</ul>
-			</div>
 
 		</div>
 	</section>
@@ -98,13 +90,10 @@
 	{{> task}}
 </template>
 
-<template name="private">
-	{{> task}}
-</template>
 
 
 <template name="task">
-	<li id="{{ _id }}" data-color="{{ color }}" data-state="{{ state }}"  class="ui-state-default">
+	<li id="{{ _id }}" data-color="{{ priority }}" data-state="{{ state }}"  class="ui-state-default">
 		<p>{{ task }} 		{{> options}}</p>
 
 		<!-- <p><em>Priority: {{ priority }}</em></p> -->

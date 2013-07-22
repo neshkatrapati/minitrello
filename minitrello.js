@@ -1,5 +1,25 @@
 BoardCollection = new Meteor.Collection("todo");
 
+
+
+  BoardCollection.allow({
+      insert: function (userId, doc) {
+	  // the user must be logged in, and the document must be owned by the user
+	  return true;
+      },
+      update: function (userId, doc, fields, modifier) {
+	  // can only change your own documents
+	  return true;
+      },
+      remove: function (userId, doc) {
+	  // can only remove your own documents
+	  return true;
+      },
+      
+  });
+
+
+
 if (Meteor.is_client) {
   // Passing variables to the templates.
   Template.board.todos = function(){
@@ -11,10 +31,6 @@ if (Meteor.is_client) {
   Template.board.dones = function(){
     return BoardCollection.find({state: "done"}, {sort: {priority: 1, task: 1}});
   };
-  Template.board.privates = function(){
-    return BoardCollection.find({state: "private"}, {sort: {priority: 1, task: 1}});
-  };
- 
   Template.edit.task =function(){
     return "nothing to edit ...";
   };
@@ -26,17 +42,13 @@ if (Meteor.is_client) {
     return BoardCollection.find(arguments).count();
   };
 
-    colors = {
-	1 : "red",
-	2 : "orange",
-	3 : "dark blue",
-	4 : "light blue",
-	5 : "cyan",
-	6 : "dark green",
-	7 : "green",
+    
+    // colors = {
 	
+    // 	1 : "" 
 
-    }
+    // };
+
 
   // Event listeners for template board.
   Template.board.events = {
@@ -44,13 +56,13 @@ if (Meteor.is_client) {
     "click button#new-todo" : function(){
       var _task = $("#new-todo-input").val(),
           total_tasks = totalDocuments({state: "todo"}) ;
-      insertDocument({task : _task, state: "todo", priority: total_tasks + 1, color: Math.floor(Math.random()*10)});
+	insertDocument({task : _task, state: "todo", priority: total_tasks + 1, color: Math.floor(Math.random()*10) });
     },
     "keyup" : function(event){
       if (event.keyCode == 13){
         var _task = $("#new-todo-input").val(),
           total_tasks = totalDocuments({state: "todo"}) ;
-          if(_task != ""){ insertDocument({task : _task, state: "todo", priority: total_tasks + 1, color: Math.floor(Math.random()*10)});}
+          if(_task != ""){ insertDocument({task : _task, state: "todo", priority: total_tasks + 1, color: (  total_tasks + 1  )  });}
         $("#new-todo-input").val("");
       }
     }
@@ -60,10 +72,11 @@ if (Meteor.is_client) {
   Template.options.events = {
     // remove task
     "click .icon-remove" : function(e){
-      var _task = $(e.target).parent().parent().parent();
+	var _task = $(e.target).parent().parent().parent().parent();
         _id = _task.attr('id');
         _ul = _task.parent();
         _ul_id = _ul.attr("id");
+	console.log(_ul_id);
         _state = _ul_id.substring( 0, _ul_id.length-1 );
         BoardCollection.remove(_id);
         Meteor.flush();
@@ -142,8 +155,11 @@ if (Meteor.is_client) {
 }
 
 if (Meteor.is_server) {
+
+
   Meteor.startup(function () {
     // Fill the board collection with documents if is empty.
+    
     if (BoardCollection.find().count() === 0) {
       var tasks = [{task : "PSD Logo", state: "todo"},
                    {task : "Python Scripts", state: "todo"},
@@ -154,7 +170,7 @@ if (Meteor.is_server) {
         BoardCollection.insert({task: tasks[i].task , state:tasks[i].state , date: (new Date()).toLocaleDateString(), priority: i + 1, color: i + 1 });
       BoardCollection.insert({task: "Django Views" , state:"doing" , date: (new Date()).toLocaleDateString(), priority: 1, color: 7 });
       BoardCollection.insert({task: "Balsamiq Mockups" , state:"done" , date: (new Date()).toLocaleDateString(), priority: 1, color: 9 });
-      BoardCollection.insert({task: "A Private Card" , state:"private" , date: (new Date()).toLocaleDateString(), priority: 1, color: 9 });
+      // BoardCollection.insert({task: "A Private Card" , state:"private" , date: (new Date()).toLocaleDateString(), priority: 1, color: 9 });
     }
   });
 }
