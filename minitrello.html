@@ -19,14 +19,16 @@
 	<div  style="padding-right:2%;float:right;display: block">
 	  {{ loginButtons align="right"}}
 	</div>
-
-	{{> board}}
+	
+	{{#if currentUser}}
+	  {{> board}}
+	{{/if}}
 </body>
 
 <template name="newtask">
-        <div class="form-search">
-	<input type="text" id="new-todo-input" placeholder="Add Task">
-	<button id="new-todo" class="btn btn-primary">Add</button><br>
+        <div class="form-search ui-sortable">
+	<input type="text" id="new-todo-input" style="width:70%" placeholder="Add Task">
+	<button class="btn btn-primary new-todo">Add</button><br>
 	</div>
 </template>
 
@@ -46,6 +48,7 @@
 					{{> todo}}
 				{{/each }}
 				</ul>
+				
 				{{> newtask }}
 			</div>
 
@@ -56,6 +59,7 @@
 						{{> doing}}
 					{{/each }}
 				</ul>
+				
 			</div>
 
 			<div class="well span4">

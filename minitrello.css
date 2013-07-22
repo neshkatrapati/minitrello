@@ -2,6 +2,22 @@
 /**{
 border: 1px solid orange;
 }*/
+.well {
+
+    padding-left:0%;
+    padding-right:0%;
+    margin-top:1%;
+    padding-top:0%;
+
+}
+.ui-sortable {
+    margin-left:0%;
+}
+.span4 {
+
+    width:300px;
+
+}
 h1{
 margin:15px auto;
 }

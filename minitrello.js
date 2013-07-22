@@ -22,6 +22,16 @@ BoardCollection = new Meteor.Collection("todo");
 
 if (Meteor.is_client) {
   // Passing variables to the templates.
+    
+  Template.isLoggedOn = function () {
+    var currentUser = Meteor.user();
+    // Is this hackable?
+      alert("Hello");
+    if (null !== currentUser) {
+            return true;
+    }
+  };
+
   Template.board.todos = function(){
     return BoardCollection.find({state: "todo"}, {sort: {priority: 1, task: 1}});
   };
@@ -53,7 +63,8 @@ if (Meteor.is_client) {
   // Event listeners for template board.
   Template.board.events = {
     // new task - todo
-    "click button#new-todo" : function(){
+    "click button.new-todo" : function(){
+	
       var _task = $("#new-todo-input").val(),
           total_tasks = totalDocuments({state: "todo"}) ;
 	insertDocument({task : _task, state: "todo", priority: total_tasks + 1, color: Math.floor(Math.random()*10) });
