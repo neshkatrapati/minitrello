@@ -11,6 +11,10 @@ if (Meteor.is_client) {
   Template.board.dones = function(){
     return BoardCollection.find({state: "done"}, {sort: {priority: 1, task: 1}});
   };
+  Template.board.privates = function(){
+    return BoardCollection.find({state: "private"}, {sort: {priority: 1, task: 1}});
+  };
+ 
   Template.edit.task =function(){
     return "nothing to edit ...";
   };
@@ -21,6 +25,18 @@ if (Meteor.is_client) {
   function totalDocuments (arguments) {
     return BoardCollection.find(arguments).count();
   };
+
+    colors = {
+	1 : "red",
+	2 : "orange",
+	3 : "dark blue",
+	4 : "light blue",
+	5 : "cyan",
+	6 : "dark green",
+	7 : "green",
+	
+
+    }
 
   // Event listeners for template board.
   Template.board.events = {
@@ -138,6 +154,7 @@ if (Meteor.is_server) {
         BoardCollection.insert({task: tasks[i].task , state:tasks[i].state , date: (new Date()).toLocaleDateString(), priority: i + 1, color: i + 1 });
       BoardCollection.insert({task: "Django Views" , state:"doing" , date: (new Date()).toLocaleDateString(), priority: 1, color: 7 });
       BoardCollection.insert({task: "Balsamiq Mockups" , state:"done" , date: (new Date()).toLocaleDateString(), priority: 1, color: 9 });
+      BoardCollection.insert({task: "A Private Card" , state:"private" , date: (new Date()).toLocaleDateString(), priority: 1, color: 9 });
     }
   });
 }

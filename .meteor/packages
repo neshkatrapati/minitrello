@@ -7,3 +7,6 @@ autopublish
 jquery
 bootstrap
 spiderable
+insecure
+accounts-password
+accounts-ui

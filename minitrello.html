@@ -16,7 +16,10 @@
 </head>
 <body>
 	<h1>MiniTrello!</h1>
-	<a href="https://github.com/chris-ramon/minitrello" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://salesfliphq.com/images/fork-me.png?1284118828"></a>
+	<div  style="padding-right:2%;float:right;display: block">
+	  {{ loginButtons align="right"}}
+	</div>
+
 	{{> board}}
 </body>
 
@@ -27,7 +30,7 @@
 			<button id="new-todo" class="btn btn-primary">Add</button><br><br>
 			<p>Inspired in : <a href="http://trello.com" target="_blank">Trello</a></p>
 			<p><i class="icon-move"></i> drag and drop the tasks.</p>
-			<p>Follow: <a href="https://twitter.com/#!/cramonn">@cramonn</a></p>
+
 		</div>
 		{{> edit}}
 	</header>
@@ -60,6 +63,16 @@
 					{{/each}}
 				</ul>
 			</div>
+
+			<div class="span4">
+				<h2>Private</h2>
+				<ul id="privates">
+					{{#each privates}}
+						{{> private}}
+					{{/each}}
+				</ul>
+			</div>
+
 		</div>
 	</section>
 
@@ -85,11 +98,16 @@
 	{{> task}}
 </template>
 
+<template name="private">
+	{{> task}}
+</template>
+
+
 <template name="task">
 	<li id="{{ _id }}" data-color="{{ color }}" data-state="{{ state }}"  class="ui-state-default">
-		<p>{{ task }} </p>
-		{{> options}}
-		<p><em>Priority: {{ priority }}</em></p>
+		<p>{{ task }} 		{{> options}}</p>
+
+		<!-- <p><em>Priority: {{ priority }}</em></p> -->
 	</li>
 </template>
 
