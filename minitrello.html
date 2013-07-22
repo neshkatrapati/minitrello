@@ -1,5 +1,5 @@
 <head>
-	<title>Minitrello - Kanban Board inspired in Trello.com</title>
+	<title>Minitrello</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 	<script type="text/javascript">
@@ -23,30 +23,33 @@
 	{{> board}}
 </body>
 
+<template name="newtask">
+        <div class="form-search">
+	<input type="text" id="new-todo-input" placeholder="Add Task">
+	<button id="new-todo" class="btn btn-primary">Add</button><br>
+	</div>
+</template>
+
+
+
 <template name="board">
 	<header>
-		<div class="well form-search">
-			<input type="text" id="new-todo-input" placeholder="new todo ... ">
-			<button id="new-todo" class="btn btn-primary">Add</button><br><br>
-			<p>Inspired in : <a href="http://trello.com" target="_blank">Trello</a></p>
-			<p><i class="icon-move"></i> drag and drop the tasks.</p>
-
-		</div>
 		{{> edit}}
 	</header>
-
+	
 	<section class="container-fluid">
-		<div class="row">
-			<div class="span4">
+		<div class="row" align="center">
+			<div class="well span4">
 				<h2>Todo</h2>
 				<ul id="todos" class="ui-sortable">
 				{{#each todos }}
 					{{> todo}}
 				{{/each }}
 				</ul>
+				{{> newtask }}
 			</div>
 
-			<div class="span4">
+			<div class="well span4">
 				<h2>Doing</h2>
 				<ul id="doings">
 					{{#each doings }}
@@ -55,7 +58,7 @@
 				</ul>
 			</div>
 
-			<div class="span4">
+			<div class="well span4">
 				<h2>Done</h2>
 				<ul id="dones">
 					{{#each dones}}
@@ -73,7 +76,7 @@
 <template name="edit">
 	<div class="well" style="display:none">
 		<label for="task"><h3>Editing ...</h3></label>
-		<textarea name="task" class="input-xlarge">{{ task }}</textarea>
+		<textarea name="task" >{{ task }}</textarea>
 		<button id="new-todo" class="btn">Save</button>
 	</div>
 </template>
