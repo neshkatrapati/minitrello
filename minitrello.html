@@ -15,14 +15,17 @@
 	</script>
 </head>
 <body>
-	<h1>MiniTrello!</h1>
+	
+        <h1>MiniTrello!</h1>
 	<div  style="padding-right:2%;float:right;display: block">
 	  {{ loginButtons align="right"}}
 	</div>
 	
+	
 	{{#if currentUser}}
 	  {{> board}}
 	{{/if}}
+	
 </body>
 
 <template name="newtask">
@@ -38,12 +41,12 @@
 	<header>
 		{{> edit}}
 	</header>
-	
-	<section class="container-fluid">
-		<div class="row" align="center">
-			<div class="well span4">
-				<h2>Todo</h2>
-				<ul id="todos" class="ui-sortable">
+	<br>
+	<div class="outer" style="">
+		<div class="inner" align="center">
+			<div class="well span4x">
+				<b style="float:left;margin-left:5%;margin-top:2%;font-size:20px">Todo</b> <br>
+				<ul id="todos" class="ui-sortable" >
 				{{#each todos }}
 					{{> todo}}
 				{{/each }}
@@ -52,9 +55,9 @@
 				{{> newtask }}
 			</div>
 
-			<div class="well span4">
-				<h2>Doing</h2>
-				<ul id="doings">
+			<div class="well span4x">
+				<b style="float:left;margin-left:5%;margin-top:2%;font-size:20px">Doing</b> <br>
+				<ul id="doings" class="ui-sortable">
 					{{#each doings }}
 						{{> doing}}
 					{{/each }}
@@ -62,18 +65,22 @@
 				
 			</div>
 
-			<div class="well span4">
-				<h2>Done</h2>
-				<ul id="dones">
+			<div class="well span4x">
+				<b style="float:left;margin-left:5%;margin-top:2%;font-size:20px">Done</b> <br>
+				<ul id="dones" class="ui-sortable">
 					{{#each dones}}
 						{{> done}}
 					{{/each}}
 				</ul>
 			</div>
+			
+			<div class="well span4x">
+				<h2>Add A List</h2>
+			</div>
 
 
 		</div>
-	</section>
+	</div>
 
 </template>
 

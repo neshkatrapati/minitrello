@@ -1,5 +1,5 @@
 BoardCollection = new Meteor.Collection("todo");
-
+BoardSections = new Meteor.Collection("bsections");
 
 
   BoardCollection.allow({
@@ -9,6 +9,7 @@ BoardCollection = new Meteor.Collection("todo");
       },
       update: function (userId, doc, fields, modifier) {
 	  // can only change your own documents
+	  
 	  return true;
       },
       remove: function (userId, doc) {

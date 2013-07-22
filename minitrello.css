@@ -13,9 +13,26 @@ border: 1px solid orange;
 .ui-sortable {
     margin-left:0%;
 }
-.span4 {
 
+.outer {
+  overflow-x: scroll;   
+  width: 80%;
+  background: blue;
+}
+.inner {
+    width:1400px;
+
+}
+.span4x {
+    display: inline;
+    float: left;
     width:300px;
+    position: relative;
+
+}
+body {
+    
+    background: white;
 
 }
 h1{
