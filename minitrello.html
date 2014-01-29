@@ -15,17 +15,17 @@
 	</script>
 </head>
 <body>
-	
+
         <h1>MiniTrello!</h1>
 	<div  style="padding-right:2%;float:right;display: block">
 	  {{ loginButtons align="right"}}
 	</div>
-	
-	
+
+
 	{{#if currentUser}}
 	  {{> board}}
 	{{/if}}
-	
+
 </body>
 
 <template name="newtask">
@@ -51,7 +51,7 @@
 					{{> todo}}
 				{{/each }}
 				</ul>
-				
+
 				{{> newtask }}
 			</div>
 
@@ -62,7 +62,7 @@
 						{{> doing}}
 					{{/each }}
 				</ul>
-				
+
 			</div>
 
 			<div class="well span4x">
@@ -73,7 +73,7 @@
 					{{/each}}
 				</ul>
 			</div>
-			
+
 			<div class="well span4x">
 				<h2>Add A List</h2>
 			</div>

@@ -17,7 +17,7 @@ border: 1px solid orange;
 .outer {
   overflow-x: scroll;   
   width: 80%;
-  background: blue;
+  background: white;
 }
 .inner {
     width:1400px;
