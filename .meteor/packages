@@ -10,3 +10,5 @@ spiderable
 insecure
 accounts-password
 accounts-ui
+standard-app-packages
+jquery-ui
